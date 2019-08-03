@@ -6322,10 +6322,16 @@
       "links": {},
       "address": "0x98DCC3ea8bA0ee118eFd622610E4916e94e46439",
       "transactionHash": "0x831f906e894aea975bc79bd03d137cfc462062258ca80a26eb8df39d970fc8fd"
+    },
+    "1564852993159": {
+      "events": {},
+      "links": {},
+      "address": "0xcf8991c30c722867433Fd4E447555efe5e2DF819",
+      "transactionHash": "0x65b9c277f8b337972dd6a658b4cc5119aed97eddc80053791b7a2e929e195f82"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-08-03T10:27:22.607Z",
+  "updatedAt": "2019-08-03T17:31:59.724Z",
   "devdoc": {
     "methods": {}
   },
