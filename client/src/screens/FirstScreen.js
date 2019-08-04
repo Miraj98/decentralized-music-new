@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Heading, Button, Layer } from 'grommet'
+import { Redirect } from 'react-router-dom'
 import { storeContractInstance } from '../redux/actions'
 import Upload from '../components/Upload'
 import { connect } from 'react-redux'
@@ -7,11 +8,8 @@ import { connect } from 'react-redux'
 class FirstScreen extends React.Component {
 
     state = {
-        showUploadModal: false
-    }
-
-    componentDidMount() {
-        this.props.storeContractInstance({ web3: this.props.web3, contract: this.props.contract, accounts: this.props.accounts })
+        showUploadModal: false,
+        isBrowseClicked: false
     }
 
     closeModal = () => {
@@ -20,6 +18,7 @@ class FirstScreen extends React.Component {
 
     render() {
         console.log(this.props)
+        if(this.state.isBrowseClicked) return <Redirect to="/browse" />
         return (
             <Box fill align='center' justify='center'>
                 <Box>
@@ -49,6 +48,7 @@ class FirstScreen extends React.Component {
                             label='Browse music'
                             primary
                             hoverIndicator='background'
+                            onClick={() => this.setState({ isBrowseClicked: true })}
                         />
                     </Box>
                 </Box>

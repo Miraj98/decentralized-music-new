@@ -47,7 +47,7 @@ class Upload extends React.Component {
 
     submitOnChain = () => {
         console.log("This is being p[ressed!")
-        this.props.contract.methods.addSong(this.state.ipfsHash, parseInt(this.state.price)).send({ from: this.props.accounts[0] })
+        this.props.contract.methods.addSong(this.state.ipfsHash, this.state.price).send({ from: this.props.accounts[0] })
         .then(response => {
             console.log(response.transactionHash)
             this.props.closeModal()
@@ -134,7 +134,8 @@ class Upload extends React.Component {
 
 const mapStateToProps = state => ({
     accounts: state.accounts,
-    contract: state.contract
+    contract: state.contract,
+    web3: state.web3
 })
 
 export default connect(mapStateToProps)(Upload)

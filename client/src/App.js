@@ -5,8 +5,10 @@ import FirstScreen from './screens/FirstScreen'
 import BrowseScreen from './screens/BrowseScreen'
 import DMusic from "./contracts/DMusic.json"
 import getWeb3 from "./utils/getWeb3"
-import { Provider } from 'react-redux'
-import store from './redux/store'
+import { connect } from 'react-redux'
+import { storeContractInstance } from './redux/actions'
+// import { Provider } from 'react-redux'
+// import store from './redux/store'
 
 const theme = {
     global: {
@@ -22,6 +24,7 @@ class App extends Component {
   state = { web3: null, accounts: null, contract: null };
 
   componentDidMount = async () => {
+    // window.AudioContext = window.AudioContext||window.webkitAudioContext||window.mozAudioContext;
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
@@ -39,7 +42,8 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance });
+      this.props.storeContractInstance({ web3, accounts, contract: instance })
+    //   this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -63,12 +67,12 @@ class App extends Component {
 //   };
 
   render() {
-    console.log(this.state.web3)
-    if (!this.state.web3) {
+    console.log(this.props.web3)
+    if (!this.props.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-        <Provider store={store}>
+        // <Provider store={store}>
             <HashRouter>
                 <Grommet theme={theme} full>
                     <Switch>
@@ -77,10 +81,18 @@ class App extends Component {
                     </Switch>
                 </Grommet>
             </HashRouter>
-        </Provider>
+        // </Provider>
     );
   }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default App
+const mapDispatchToProps = {
+    storeContractInstance
+} 
+
+const mapStateToProps = state => ({
+    web3: state.web3
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App
