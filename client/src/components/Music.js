@@ -21,10 +21,10 @@ function Music({ songName, album, artist, albumArt, isBought, updateState, onPla
                 <Text>Album: {album}</Text>
                 <Text>by {artist}</Text>
             </Box>
-            <Box align='center' justify='center'>
+            {/* <Box align='center' justify='center'>
                 <Text>$10</Text>
                 <Text size='small'>PRICE</Text>
-            </Box>
+            </Box> */}
             <Box>
                 <Button onClick={() => {
                     if(!isBought) updateState()
